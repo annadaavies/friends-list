@@ -37,7 +37,7 @@ export class friendService {
   }
 
   //findByOption(options: friendSearchOptions){
-  //ask for help: struggling on this feature (identifying if they match the 'database' etc.)
+  //To ask for help: struggling on this feature (identifying if they match the 'database' etc.)
   //}
 
   updateFriend(id: string, friendDto: FriendDto) {
