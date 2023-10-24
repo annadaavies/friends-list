@@ -1,6 +1,7 @@
 import { Injectable } from '@nestjs/common';
 import { Friend } from './friend.model';
 import { FriendDto } from './friend.model';
+import { friendSearchOptions } from './friend.model';
 
 @Injectable()
 export class friendService {
@@ -36,9 +37,24 @@ export class friendService {
     return friend;
   }
 
-  //findByOption(options: friendSearchOptions){
-  //To ask for help: struggling on this feature (identifying if they match the 'database' etc.)
-  //}
+  findByOption(options: friendSearchOptions){
+    const filteredFriends = this.friends.filter((friend) => {
+      if (options.id && friend.id !== parseInt(options.id)) {
+        return false;
+      }
+      if (options.name && !friend.name.toLowerCase().includes(options.name.toLowerCase())) {
+        return false;
+      }
+      if (options.sex && !friend.sex.toLowerCase().includes(options.sex.toLowerCase())) {
+        return false;
+      }
+      if (options.age && friend.age !== parseInt(options.age)) {
+        return false;
+      }
+      return true;
+    });
+    return filteredFriends;
+  }
 
   updateFriend(id: string, friendDto: FriendDto) {
     const friend = this.friends.find((friend) => friend.id == parseInt(id));
