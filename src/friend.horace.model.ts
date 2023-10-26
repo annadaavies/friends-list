@@ -21,6 +21,7 @@ export class myDB {
   public static findAll(): Promise<Friend[]> {
     return new Promise((resolve, reject) => {
       setTimeout(() => {
+        // return back some value when resolve a promise (after 2 second).
         resolve(this.friends);
       }, 2000);
     });
