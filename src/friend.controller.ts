@@ -15,6 +15,11 @@ import { friendSearchOptions } from './friend.model';
 
 @Controller('friends')
 export class friendController {
+  /**
+   * if you want to learn more, google "dependency injection in Nestjs"
+   * There is no problem in controller. The code is great.
+   * Remember the DTO things I mentioned in friend.model.ts and friend.service.ts
+   */
   constructor(private readonly friendService: friendService) {}
 
   @Post()
@@ -31,6 +36,32 @@ export class friendController {
   findById(@Param('id') id: string) {
     return this.friendService.findById(id);
   }
+
+  /**
+   * You can define a dto for @Query() options.
+   * In dto, one of the filed can be like
+   *
+   * .
+   * .
+   * .
+   * @IsOptional()
+   * @IsNumber()
+   * startAge: number;
+   *
+   * @IsOptional()
+   * @IsNumber()
+   * endAge: number;
+   * .
+   * .
+   * .
+   *
+   * if client provide both thest query var to you, you can search the friends limited by a age range like: 16-25
+   * if only startAge=16 provided, search the friends who age is greater than 16
+   * if only endAge=25 provided, search the friends who age is lower than 25
+   *
+   * The name, sex feature work when you write a multi if-else statement there.
+   * Try to finish the logic of this feature in service. I believe you can do it.
+   */
 
   //Get('search')
   //findByOption(@Query() options: friendSearchOptions) {
